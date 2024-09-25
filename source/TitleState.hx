@@ -84,6 +84,10 @@ class TitleState extends MusicBeatState
 	var customMenuScroll: Array<Array<String>>;
 	override public function create():Void
 	{
+	
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
 
 		#if windows
 		DiscordClient.initialize();

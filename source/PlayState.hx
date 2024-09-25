@@ -1018,6 +1018,10 @@ class PlayState extends MusicBeatState
 
 		add(scoreTxt);
 		add(difficTxt);
+		
+		#if android
+        addAndroidControls();
+        #end	
 
 		startingSong = true;
 		trace('finish uo');
@@ -1225,6 +1229,7 @@ class PlayState extends MusicBeatState
 	public function startCountdown():Void
 	{
 		inCutscene = false;
+		#if android androidControls.visible = true; #end
 
 		generateStaticArrows(0);
 		generateStaticArrows(1);
@@ -2241,7 +2246,7 @@ class PlayState extends MusicBeatState
 				health = -50;
 		}
 		accuracyTxt.text = "Accuracy:" + accuracy + "%";
-		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
+		if (FlxG.keys.justPressed.ENTER #if android || FlxG.android.justReleased.BACK #end && startedCountdown && canPause)
 		{
 			persistentUpdate = false;
 			persistentDraw = true;
